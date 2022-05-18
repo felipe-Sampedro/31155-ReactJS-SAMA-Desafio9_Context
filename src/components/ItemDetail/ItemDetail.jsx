@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { GlobalContext } from '../CartContext/CartContext';
 import ItemCount from '../ItmenCount/ItemCount'
+
 
 const ItemDetail = ({window}) => {
 
@@ -9,6 +11,12 @@ const ItemDetail = ({window}) => {
         console.log('La cantidad agregada al carrito es: ' + quantityToAdd +' de la referencia '+ ref);
 /*         setQuantityToAdd(quantityToAdd) */
     }
+
+    const [state, setState] = useState([])
+    const {carrito,AddToCart}=useContext(GlobalContext)
+    // const [windowcount, setWindowCount] = useState({id:window.id,title:window.title,stock:window.stock})
+    const [windowcount, setWindowCount] = useState({})
+
 
   return (
     <div>
@@ -23,8 +31,12 @@ const ItemDetail = ({window}) => {
                         </div>
                         <p className="lead">{window.description}</p>
                         <div className='d-flex justify-content-center' /* style={{width:'250px'}} */>
-                            <ItemCount stock={window.stock} title={window.title} onAdd={onAdd}/> 
+                            {/* <ItemCount stock={window.stock} title={window.title} onAdd={onAdd}/>  */}
+                            <ItemCount window={window} onAdd={onAdd(window.stock,window.title)}/> 
 
+                        </div>
+                        <div>
+                            <button className='btn btn-info m-2' onClick={()=> AddToCart(window)}>Agregar al Carrito ItemDetail</button>
                         </div>
 
                     </div>

@@ -6,7 +6,7 @@ import { GlobalContext } from '../CartContext/CartContext'
 
 const Card = ({id,categoryId,title,imagenUrl,description,price,stock}) => {
 
-  const [state, setState] = useState({id,title,stock,imagenUrl})
+  // const [state, setState] = useState({id,title,stock,imagenUrl})
   const {carrito,AddToCart}=useContext(GlobalContext)
 
   return (
@@ -18,9 +18,11 @@ const Card = ({id,categoryId,title,imagenUrl,description,price,stock}) => {
             {/* <p>{price}</p> */}
             {/* <ItemCount stock={stock}/> */}
 {/*             <a href="" className="btn btn-primary"  >Ver Detalle */}
-            <div>
+
+            {/* <div>
               <button className='btn btn-info m-2' onClick={()=> AddToCart(state)}>Agregar al Carrito</button>
-            </div>
+            </div> */}
+
             <Link to= {`/item-detail/${id}`} className="btn btn-primary">Ver Detalle</Link>
             
 {/*             </a> */}

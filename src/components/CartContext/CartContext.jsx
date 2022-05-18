@@ -17,16 +17,28 @@ const CartContext = ({children}) => {
 
 
     const AddItem = (item,quantity)=>{
-      
       const agregado = {item,quantity}
-
     }
 
 
+    const removeItem = (id)=>{
+      const remover = carrito.find((carr)=>carr.id !== Number(id))
+      setCarrito(remover)
+
+    }
+
+    const isInCart = (id) =>{
+      return carrito.some(e => e.id===id) ? 'esta en el carrito':'no esta en el carrito'
+    }
+
+
+    const clear = () =>{
+      setCarrito([])
+    }
 
 
   return (
-    <GlobalContext.Provider value= {{carrito,AddToCart}} >
+    <GlobalContext.Provider value= {{carrito,AddToCart,removeItem,clear,isInCart}} >
         {children}
     </GlobalContext.Provider>
   )
