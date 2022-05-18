@@ -7,6 +7,9 @@ export const GlobalContext = createContext('')
 const CartContext = ({children}) => {
     
     const [carrito, setCarrito] = useState([])
+    const [qtyCompra, setqtyCompra] = useState(0)
+
+
 
     const AddToCart = (producto) => {
 
@@ -22,7 +25,9 @@ const CartContext = ({children}) => {
 
 
     const removeItem = (id)=>{
-      const remover = carrito.find((carr)=>carr.id !== Number(id))
+      // const remover = carrito.find((carr)=>carr.id !== Number(id))
+      const remover = carrito.filter((ref)=>ref.id !== Number(id))
+
       setCarrito(remover)
 
     }
