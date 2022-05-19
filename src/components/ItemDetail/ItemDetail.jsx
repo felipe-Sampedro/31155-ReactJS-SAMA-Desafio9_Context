@@ -6,19 +6,21 @@ import ItemCount from '../ItmenCount/ItemCount'
 
 const ItemDetail = ({window}) => {
 
-    const [quantityToAdd, setQuantityToAdd] = useState(0)
+    const [cantCompra, setCantCompra] = useState(0)
 
     function onAdd(quantityToAdd,ref){
         console.log('La cantidad agregada al carrito es: ' + quantityToAdd +' de la referencia '+ ref);
-        setQuantityToAdd(quantityToAdd)
+        setCantCompra(quantityToAdd)
     }
 
     const [state, setState] = useState([])
+        
     const {carrito,AddToCart}=useContext(GlobalContext)
     // const [windowcount, setWindowCount] = useState({id:window.id,title:window.title,stock:window.stock})
-    const [windowcount, setWindowCount] = useState({})
+/*     const [windowcount, setWindowCount] = useState({}) */
 
 
+     
   return (
     <div>
         <section className="py-1">
@@ -32,12 +34,13 @@ const ItemDetail = ({window}) => {
                         </div>
                         <p className="lead">{window.description}</p>
                         <div className='d-flex justify-content-center' /* style={{width:'250px'}} */>
-                            <ItemCount window={window} onAdd={onAdd} quantityToAdd={quantityToAdd}/> 
+                            <ItemCount window={window} onAdd={onAdd} quantityToAdd={cantCompra}/> 
                         </div>
 
-                        {quantityToAdd > parseInt(0) ? (
+                        {cantCompra > parseInt(0) ? (
                             <Link to="/cart">
-                                <button onClick={()=> AddToCart(window)} className='btn btn-success m-2'>Ver carrito</button>
+                                {/* <button onClick={()=> AddToCart(window,quantityToAdd)} className='btn btn-success m-2'>Ver carrito</button> */}
+                                <button onClick={()=> AddToCart(window,cantCompra)} className='btn btn-success m-2'>Ver carrito</button>
                             </Link>
                         ):(
                             <p></p>
