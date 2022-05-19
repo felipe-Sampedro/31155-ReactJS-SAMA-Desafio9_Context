@@ -6,13 +6,16 @@ import { Link, useParams } from 'react-router-dom'
 /* import ItemDetail from '../ItemDetail/ItemDetail' */
 /* import { useParams } from 'react-router-dom' */
 
-const ItemListContainer = ({prods}) => {
+const ItemListContainer = () => {
 const [productos,setProductos] = useState([])
+
+const{categoryId} = useParams()
+const group = catalogo.filter((prod)=>prod.categoryId === (categoryId))
 
 useEffect(() => {
   const pedido = new Promise((resolve,reject) => {
     setTimeout(() => {
-      resolve(prods ? prods : catalogo)
+      resolve(categoryId ? group : catalogo)
     }, 2000);
   });
 
@@ -22,7 +25,7 @@ useEffect(() => {
 
   return () => {    
   }
-}, [prods])
+}, [categoryId])
 
 return (
     <div className='bg-info'>ItemListContainer

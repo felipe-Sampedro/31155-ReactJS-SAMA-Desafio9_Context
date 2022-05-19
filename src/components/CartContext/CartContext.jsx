@@ -43,7 +43,7 @@ const CartContext = ({children}) => {
 
 
   return (
-    <GlobalContext.Provider value= {{carrito,AddToCart,removeItem,clear,isInCart}} >
+    <GlobalContext.Provider value= {{carrito,setCarrito,qtyCompra,setqtyCompra,AddToCart,removeItem,clear,isInCart}} >
         {children}
     </GlobalContext.Provider>
   )

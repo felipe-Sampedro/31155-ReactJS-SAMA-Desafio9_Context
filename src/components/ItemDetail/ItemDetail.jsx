@@ -1,15 +1,16 @@
 import React, { useContext, useState } from 'react'
+import { Link } from 'react-router-dom';
 import { GlobalContext } from '../CartContext/CartContext';
 import ItemCount from '../ItmenCount/ItemCount'
 
 
 const ItemDetail = ({window}) => {
 
- /*    const [quantityToAdd, setQuantityToAdd] = useState(1) */
+    const [quantityToAdd, setQuantityToAdd] = useState(0)
 
     function onAdd(quantityToAdd,ref){
         console.log('La cantidad agregada al carrito es: ' + quantityToAdd +' de la referencia '+ ref);
-/*         setQuantityToAdd(quantityToAdd) */
+        setQuantityToAdd(quantityToAdd)
     }
 
     const [state, setState] = useState([])
@@ -31,13 +32,16 @@ const ItemDetail = ({window}) => {
                         </div>
                         <p className="lead">{window.description}</p>
                         <div className='d-flex justify-content-center' /* style={{width:'250px'}} */>
-                            {/* <ItemCount stock={window.stock} title={window.title} onAdd={onAdd}/>  */}
-                            <ItemCount window={window} onAdd={onAdd(window.stock,window.title)}/> 
+                            <ItemCount window={window} onAdd={onAdd} quantityToAdd={quantityToAdd}/> 
+                        </div>
 
-                        </div>
-                        <div>
-                            <button className='btn btn-info m-2' onClick={()=> AddToCart(window)}>Agregar al Carrito ItemDetail</button>
-                        </div>
+                        {quantityToAdd > parseInt(0) ? (
+                            <Link to="/cart">
+                                <button onClick={()=> AddToCart(window)} className='btn btn-success m-2'>Ver carrito</button>
+                            </Link>
+                        ):(
+                            <p></p>
+                        )}
 
                     </div>
                 </div>
